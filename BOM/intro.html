@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 200vh;
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="history.html">vai pra history</a>
+
+    <button> abre com metodo open</button>
+    <hr>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit totam eum sequi corporis eaque nemo excepturi
+        dicta possimus magni. Recusandae tempore, quos consectetur iusto aspernatur nemo nam reiciendis aliquam
+        provident!</p>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit totam eum sequi corporis eaque nemo excepturi
+        dicta possimus magni. Recusandae tempore, quos consectetur iusto aspernatur nemo nam reiciendis aliquam
+
+
+
+        <script>
+            document.querySelector('button').addEventListener('click', function () {
+                window.open('history.html')
+            })
+            window.addEventListener('load', function () {
+                console.log('loadou')
+            })
+            window.addEventListener('DOMContentLoaded', function () {
+                console.log('domcontent carregado')
+            })
+
+            window.addEventListener('resize', function () {
+                console.log('resizou', innerWidth, innerHeight)
+            })
+            window.addEventListener('scroll', function () {
+                console.log('scrollu', pageYOffset)
+            })
+        </script>
+</body>
+
+</html>

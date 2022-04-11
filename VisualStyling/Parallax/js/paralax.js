@@ -1,0 +1,27 @@
+window.addEventListener('scroll', positionImage)
+
+const dataParallaxContainer =[...document.querySelectorAll('[data-paralax]')]
+
+function positionImage(){
+    dataParallaxContainer.forEach(c => {
+        let originalPositionY = getComputedStyle(c).backgroundPositionY
+        let originalPositionX = getComputedStyle(c).backgroundPositionX
+
+        function isGettingOut(container){
+            return container.getBoundingClientRect().top <= 0
+        }
+
+        function getNewPosition(c){
+            const v = parseFloat(c.getAttribute('data-p-velocity')) || .5
+            return c.getBoundingClientRect().top * v * -1
+        }
+        if(isGettingOut(c)){
+            console.log('está saindo', c)
+            c.style.backgroundPosition = `${originalPositionX} ${getNewPosition(c)}px`
+        }else{
+            c.style.backgroundPosition = `${originalPositionX} 0px`
+        }
+    })
+}
+
+positionImage()
