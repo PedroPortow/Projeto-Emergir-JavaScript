@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Curso Javascript Completo</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="css/estilo.css">
+
+</head>
+
+<body>
+
+
+  <div id="bs-feedback" class="alert alert-warning alert-dismissible" role="alert">
+
+    <span class="content"></span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">X</button>
+  </div>
+
+  <div class="container">
+    <h1>Digite um CEP</h1>
+
+    <form>
+      <div class="form-group">
+        <label class="control-label" for="inputCEP">CEP</label>
+        <div class="controls">
+          <input class="form-control" type="text" id="inputCEP" placeholder="xxxxx-xxx">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="inputLogradouro">Logradouro</label>
+        <div class="controls">
+          <input class="form-control" type="text" id="inputLogradouro" placeholder="Logradouro">
+          <input class="form-control" type="number" id="inputNumero" placeholder="Numero">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="inputBairro">Bairro</label>
+        <div class="controls">
+          <input class="form-control" type="text" id="inputBairro" placeholder="Bairro">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="inputCidade">Cidade</label>
+        <div class="controls">
+          <input class="form-control" type="text" id="inputCidade" placeholder="Cidade">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="inputEstado">Estado</label>
+        <div class="controls">
+          <input class="form-control" type="text" id="inputEstado" placeholder="Estado">
+        </div>
+      </div>
+
+
+    </form>
+  </div>
+</body>
+
+<script>
+  // URL: https://viacep.com.br/ws/03133000/json/
+  const inputCep = document.querySelector('#inputCEP')
+
+  inputCep.addEventListener("input", function (e) {
+    let cepValue = inputCep.value
+
+    cepValue = cepValue.replace("-", "")
+    if (cepValue.length === 8) {
+      addresFinder(cepValue).then(data => {
+        if (data.erro) {
+          throw Error('CEP Inexistente')
+
+        }
+        console.log(data)
+        showData(data)
+
+      }).catch(error => {
+        showError(error.message)
+      })
+
+    }
+
+    function showError(errorMessage) {
+      document.querySelector('#bs-feedback .content').textContent = errorMessage
+      document.querySelector('#bs-feedback').style.transform = 'translateY(0)'
+    }
+
+    function showData(data) {
+      let inputLogradouro = document.getElementById('inputLogradouro')
+
+      let inputBairro = document.getElementById('inputBairro')
+      let inputCidade = document.getElementById('inputCidade')
+      let inputEstado = document.getElementById('inputEstado')
+
+      inputLogradouro.value = data.logradouro
+      inputBairro.value = data.bairro
+      inputCidade.value = data.localidade
+      inputEstado.value = data.uf
+      inputLogradouro.value = data.logradouro
+    }
+
+
+    function addresFinder(cep) {
+      let url = `https://viacep.com.br/ws/${cep}/json/`
+      return fetch(url).then(response => {
+        if (!response.ok) throw Error("CEP Inválido")
+        return response
+      }).then(data => data.json())
+    }
+  })
+
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,26 @@
+{
+  "tasks": [
+    {
+      "title": "testeewew",
+      "completed": false,
+      "createdAt": 1649954089311,
+      "updatedAt": 1649954169216,
+      "id": 2,
+      "userId": "2"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "daniel@server.com"
+    },
+    {
+      "id": 2,
+      "email": "maria@server.com"
+    },
+    {
+      "id": 3,
+      "email": "joao@server.com"
+    }
+  ]
+}
