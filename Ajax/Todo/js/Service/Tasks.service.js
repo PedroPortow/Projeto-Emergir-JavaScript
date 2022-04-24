@@ -34,7 +34,7 @@ export default class TasksService {
          
             .then(response => {
                 return fn(response)
-            })
+            })               
             .catch(erro => {
                 if(typeof error === 'function'){
                     return error(erro.message)
